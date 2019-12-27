@@ -1,0 +1,7 @@
+*.pyc
+*.json
+bin/*
+lib/*
+include/*
+working/*
+
