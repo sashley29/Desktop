@@ -1,13 +1,27 @@
 #!/bin/sh
-export GOOGLE_APPLICATION_CREDENTIALS="/home/shawn/Projects/desktop_backup/env/secrets/Playground-15ed10c8f21e.json"
-BASE=/home/shawn/Projects/desktop_backup/env
+
+if [ ! -n "$1" ]
+then
+	echo "No base directory parameter passed.  Cannot run program. "
+	exit 1
+else
+	BASE=$1
+fi
+
+export GOOGLE_APPLICATION_CREDENTIALS=$BASE/secrets/Playground-15ed10c8f21e.json
 INSTALL_SCRIPT=$BASE/scripts/install.sh
 
-$INSTALL_SCRIPT
+$INSTALL_SCRIPT $BASE
 
 if [ ! -d "$BASE/working" ]
 then
 	mkdir $BASE/working
+fi
+
+if [ ! -d "$BASE/secrets" ]
+then
+	echo "No credentials found... cannot run program. "
+	exit 1
 fi
 
 if [ -f $BASE/src/DesktopBackup.py ]

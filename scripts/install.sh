@@ -1,6 +1,13 @@
 #!/bin/sh
 
-BASE=/home/shawn/Projects/desktop_backup/env
+if [ ! -n "$1" ]
+then
+	echo "No base directory parameter passed.  Cannot run program. "
+	exit 1
+else
+	BASE=$1
+fi
+
 RELEASE_URL=https://api.github.com/repos/sashley29/Desktop/releases/latest
 RELEASE_FILE=desktop_backup.tar
 
