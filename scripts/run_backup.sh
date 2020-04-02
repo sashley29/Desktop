@@ -22,8 +22,10 @@ fi
 
 $INSTALL_SCRIPT $BASE
 
-if [ ! -d "$BASE/working" ]
+if [ -d "$BASE/working" ]
 then
+	find $BASE/working -mtime +2 -exec rm -f {} \;
+else
 	mkdir $BASE/working
 fi
 
