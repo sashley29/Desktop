@@ -30,7 +30,6 @@ fi
 
 $INSTALL_SCRIPT $BASE
 
-
 if [ ! -d "$BASE/secrets" ]
 then
 	echo "No credentials found... cannot run program. "
