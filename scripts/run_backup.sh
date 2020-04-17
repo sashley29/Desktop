@@ -11,6 +11,14 @@ fi
 export GOOGLE_APPLICATION_CREDENTIALS=$BASE/secrets/Playground-15ed10c8f21e.json
 INSTALL_SCRIPT=$BASE/scripts/install.sh
 DISK_SCRIPT=$BASE/scripts/disk-usage.sh
+
+if [ -d "$BASE/working" ]
+then
+	find $BASE/working -mtime +2 -exec rm -f {} \;
+else
+	mkdir $BASE/working
+fi
+
 $DISK_SCRIPT
 diskcheck=$(echo $?)
 
@@ -22,12 +30,6 @@ fi
 
 $INSTALL_SCRIPT $BASE
 
-if [ -d "$BASE/working" ]
-then
-	find $BASE/working -mtime +2 -exec rm -f {} \;
-else
-	mkdir $BASE/working
-fi
 
 if [ ! -d "$BASE/secrets" ]
 then
