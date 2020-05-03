@@ -47,7 +47,7 @@ def create_archive(sourcefolder, archivefilepath):
 #time format example: 20Nov2016_102345
 current_time = datetime.datetime.now().strftime("%d%b%Y_%H%M%S")
 computer_name = socket.gethostname()
-archive_filename = "backup_" + computer_name + current_time + ".tgz"
+archive_filename = "backup_" + computer_name + "_" + current_time + ".tgz"
 archive_filepath = ARCHIVE_PATH + "/" + archive_filename
 
 create_archive(SOURCEFOLDER_PATH, archive_filepath)
