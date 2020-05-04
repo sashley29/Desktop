@@ -4,6 +4,7 @@ import sys
 import datetime
 import socket
 
+from Publisher import publish_desktop_message
 from google.cloud import storage
 
 SOURCEFOLDER_PATH = sys.argv[1]
@@ -17,12 +18,12 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
     bucket = storage_client.get_bucket(bucket_name)
     blob = bucket.blob(destination_blob_name)
 
-    blob.upload_from_filename(source_file_name)
+    try:
+    	blob.upload_from_filename(source_file_name)
+    except Exception as e:
+    	publish_desktop_message("Could not upload backup file: \nError: " + e)
 
-    print('File {} uploaded to {}.'.format(
-        source_file_name,
-        destination_blob_name))
-
+    
 def filter_function(tarinfo):
 	print('File name {}'.format(tarinfo.name))
 	if tarinfo.name in INCLUDE_FILES:
@@ -54,6 +55,7 @@ create_archive(SOURCEFOLDER_PATH, archive_filepath)
 
 if os.path.getsize(archive_filepath) > 0:
 	upload_blob(BUCKET, archive_filepath, archive_filename)
+	publish_desktop_message("Backup completed successfully for " + archive_filename)
 	os.remove(archive_filepath)
 else:
 	print('File {} was not compressed successfully.'.format(archive_filepath))
