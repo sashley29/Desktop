@@ -21,7 +21,7 @@ IFS=$'\n'
 for FILE in `find $PRINT_DIR -type f`
 do 
 	echo "Sending file $FILE to printer."
-	lp -o ColorModel=KGray -d HP-Photosmart-6510 $FILE
+	lp -o ColorModel=KGray -o number-up=1 -o fit-to-page -d Photosmart_6510 $FILE
 done
 
 IFS="$OIFS"
