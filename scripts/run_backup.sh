@@ -16,7 +16,7 @@ if [ -d "$BASE/working" ]
 then
 	find $BASE/working -mtime +2 -exec rm -f {} \;
 else
-	mkdir $BASE/working
+	ln -s /home/shawn/Backup $BASE/working
 fi
 
 $DISK_SCRIPT
