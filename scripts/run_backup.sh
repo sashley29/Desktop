@@ -38,7 +38,7 @@ fi
 
 if [ -f $BASE/src/DesktopBackup.py ]
 then
-	python $BASE/src/DesktopBackup.py /home $BASE/working
+	python3 $BASE/src/DesktopBackup.py /home $BASE/working
 else
 	echo "DesktopBackup program not found."
 	exit 1
