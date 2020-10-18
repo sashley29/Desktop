@@ -10,7 +10,7 @@ from google.cloud import storage
 SOURCEFOLDER_PATH = sys.argv[1]
 ARCHIVE_PATH = sys.argv[2]
 BUCKET = "sashley29_desktop_backup"
-INCLUDE_FILES = ['Desktop', 'Projects']
+INCLUDE_FILES = ['Desktop']
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
     """Uploads a file to GCP bucket."""
