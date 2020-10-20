@@ -30,7 +30,7 @@ fi
 OIFS="$IFS"
 IFS=$'\n'
 
-for FILE in `find $PRINT_DIR -type f -maxdepth 1`
+for FILE in `find $PRINT_DIR -maxdepth 1 -type f`
 do 
 	echo "Sending file $FILE to printer."
 	lp -o ColorModel=Color -o number-up=1 -o fit-to-page -d Photosmart_6510 $FILE
