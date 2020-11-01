@@ -30,10 +30,11 @@ fi
 OIFS="$IFS"
 IFS=$'\n'
 
-for FILE in `find $PRINT_DIR -maxdepth 1 -type f`
+#get files in print directory and sort by name
+for FILE in `find $PRINT_DIR -maxdepth 1 -type f | sort`
 do 
 	echo "Sending file $FILE to printer."
-	lp -o ColorModel=Color -o number-up=1 -o fit-to-page -d Photosmart_6510 $FILE
+	lp -o ColorModel=KGray -o number-up=1 -o fit-to-page -d ENVY-Pro-6400-series $FILE
 	mv $FILE $PRINT_DIR/archive
 done
 
