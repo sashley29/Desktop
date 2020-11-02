@@ -14,7 +14,7 @@ DISK_SCRIPT=$BASE/scripts/disk-usage.sh
 
 if [ -d "$BASE/working" ]
 then
-	find $BASE/working -mtime +2 -exec rm -f {} \;
+	find $BASE/working -type f -mtime +2 -exec rm -f {} \;
 else
 	ln -s /home/shawn/Backup $BASE/working
 fi
